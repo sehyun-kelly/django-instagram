@@ -1,15 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap');
+
 *{
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body{
     width: 100%;
-    padding: 0 100px;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.main{
+    grid-column: 2 / span 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar{
+    position: fixed;
+    z-index: 1;
+    width: 975px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    align-items: center;
+    background-color: darkgoldenrod;
 }
 
 a{
     color: black;
     text-decoration: none;
+}
+
+.search{
+    justify-self: center;
+    width: 268px;
+    height: 36px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #efefef;
+
+}
+
+.upper-icons > a{
+    padding-left: 20px;
 }
 
 .material-symbols-outlined {
@@ -32,6 +74,79 @@ a{
     display:inline-block;
     width: 22px;
     height: 22px;
-    border: 1px solid black;
+    border: 1px solid red;
     border-radius: 50%;
+}
+
+.feed{
+    margin-top: 60px;
+    display: flex;
+    width: 975px;
+    height: 100%;
+}
+
+.left{
+    width: 630px;
+    background-color: aquamarine;
+}
+
+.stories {
+    width: 100%;
+    height: 120px;
+    margin: 24px 0;
+    background-color: crimson;
+    display: flex;
+    flex-direction: row;
+}
+
+.each-story{
+    width: 80px;
+    height: 110px;
+    margin: 3px 3px;
+    background-color: darkolivegreen;
+}
+
+.posts {
+    width: 100%;
+}
+
+.each-post{
+    width: 100%;
+    height: 1028px;
+    margin-bottom: 25px;
+    background-color: darkolivegreen;
+}
+
+.post-profile, .post-picture, .post-reaction, .post-comment{
+    width: 100%;
+    border-bottom: 1px solid gainsboro;
+}
+
+.post-profile{
+    height: 70px;
+}
+
+.post-picture{
+    height: 765px;
+}
+
+.post-reaction {
+    height: 138px;
+}
+
+.post-comment{
+    height: 55px;
+}
+.right{
+    position: fixed;
+    top: 60px;
+    right: calc((100% - 975px)/2);
+    width: 345px;
+    background-color: coral;
+}
+
+.personalized{
+    margin-top: 24px;
+    height: 100%;
+    background-color: darkseagreen;
 }
