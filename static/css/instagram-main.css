@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    padding: 0 100px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.material-symbols-outlined:active {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.profile{
+    display:inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid black;
+    border-radius: 50%;
+}

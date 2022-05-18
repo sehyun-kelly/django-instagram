@@ -1,15 +1,30 @@
-<!DOCTYPE html>
+{% load static %}
+
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/instagram-main.css' %}"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <title>Instagram</title>
 </head>
 <body>
-<h1>Title</h1>
-<p>Body</p>
-<img src="http://topclass.chosun.com/news_img/1912/1912_058.jpg" alt="img">
-<div>
-    <button>click</button>
-</div>
+<nav class="navbar">
+    <a class="navbar-brand">
+        <img style="width: 100px"
+             src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png" alt="logo"/>
+    </a>
+    <input style="width: 200px" type="search" placeholder="Search" aria-label="Search">
+    <div>
+            <a href="#"><span class="material-symbols-outlined">home</span></a>
+    <a href="#"><span class="material-symbols-outlined">send</span></a>
+    <a href="#"><span class="material-symbols-outlined">add_box</span></a>
+    <a href="#"><span class="material-symbols-outlined">explore</span></a>
+    <a href="#"><span class="material-symbols-outlined">favorite</span></a>
+    <a href="#"><span class="profile"></span></a>
+    </div>
+</nav>
 </body>
 </html>
