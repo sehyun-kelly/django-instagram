@@ -5,9 +5,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/instagram-main.css' %}"/>
+
+    <!-- Google Icons -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <title>Instagram</title>
 </head>
 <body>
@@ -22,7 +30,7 @@
         <div class="upper-icons">
             <a href="#"><span class="material-symbols-outlined">home</span></a>
             <a href="#"><span class="material-symbols-outlined">send</span></a>
-            <a href="#"><span class="material-symbols-outlined">add_box</span></a>
+            <a href="#"><span id="nav-add" class="material-symbols-outlined">add_box</span></a>
             <a href="#"><span class="material-symbols-outlined">explore</span></a>
             <a href="#"><span class="material-symbols-outlined">favorite</span></a>
             <a href="#"><span class="profile"></span></a>
@@ -37,59 +45,45 @@
                 <div class="each-story">story</div>
                 <div class="each-story">story</div>
                 <div class="each-story">story</div>
-                <div class="each-story">story</div>
             </div>
             <div class="posts">
-                <div class="each-post">
-                    <div class="post-profile">
-                        <img src="#"/>
-                        <span>sehyun.kelly</span>
-                        <span class="material-symbols-outlined">
-more_horiz
-</span>
+                {% for feed in feeds %}
+                    <div class="each-post">
+                        <div class="post-profile">
+                            <img class="post-profile-pic" alt="profile pic" src={{ feed.profile_image }}/>
+                            <span><strong>{{ feed.user_id }}</strong></span>
+                            <span class="material-symbols-outlined">more_horiz</span>
+                        </div>
+                        <div class="post-picture">
+                            <img class="post-picture-img" alt="post pic" src={{ feed.image }}/>
+                        </div>
+                        <div class="post-reaction">
+                            <form class="post-reaction-icons">
+                                <button type="submit"><span class="material-symbols-outlined">favorite</span></button>
+                                <button type="submit"><span class="material-symbols-outlined">chat_bubble</span>
+                                </button>
+                                <button type="submit"><span class="material-symbols-outlined">send</span></button>
+                                <button type="submit" class="favorite"><span class="material-symbols-outlined bookmark">bookmark</span>
+                                </button>
+                            </form>
+                            <div>
+                                <span>Liked by <strong>others</strong></span>
+                            </div>
+                            <div>
+                                <span><strong>{{ feed.user_id }}</strong></span>
+                                <span>{{ feed.content }}</span>
+                            </div>
+                            <div>
+                                <span class="timestamp">10 HOURS AGO</span>
+                            </div>
+                        </div>
+                        <form class="post-comment">
+                            <span class="material-symbols-outlined smile">sentiment_satisfied</span>
+                            <input class="comment" type="text" placeholder="Add a comment..." aria-label="comment"/>
+                            <button class="comment-submit" type="submit">Post</button>
+                        </form>
                     </div>
-                    <div class="post-picture">
-                        <img src="#"/>
-                    </div>
-                    <div class="post-reaction">
-                        <span class="material-symbols-outlined">
-favorite
-</span>
-                        <span class="material-symbols-outlined">
-chat_bubble
-</span>
-                        <span class="material-symbols-outlined">
-send
-</span>
-                        <span class="material-symbols-outlined">
-bookmark
-</span>
-                        <span>Liked by <strong>others</strong></span>
-                        <span><strong>sehyun.kelly</strong></span>
-                        <span>Nice weather</span>
-                        <span>10 HOURS AGO</span>
-                    </div>
-                    <div class="post-comment">
-                        <span class="material-symbols-outlined">
-sentiment_satisfied
-</span>
-        <input class="comment" type="text" placeholder="Add a comment..." aria-label="comment">
-                    </div>
-                </div>
-                <div class="each-post">
-                    <div class="post-profile">
-                        profile
-                    </div>
-                    <div class="post-picture">
-                        picture
-                    </div>
-                    <div class="post-reaction">
-                        reaction
-                    </div>
-                    <div class="post-comment">
-                        comment
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
         </div>
@@ -99,6 +93,54 @@ sentiment_satisfied
             </div>
         </nav>
     </section>
+
+    <!-- First Modal -->
+    <div id="firstModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="new-post">
+                <span><strong>Create new post</strong></span>
+            </div>
+            <div id="upload" class="upload">
+                <img id="drop-image" class="drop-image" alt="drop image" src="{% static 'media/drag-image.png' %}"/>
+                <button id="select-image" class="select-image" type="submit">Select from computer</button>
+            </div>
+            <span id="modal-next" class="modal-button">Next</span>
+        </div>
+        <span id="modal-close" class="close">&times;</span>
+    </div>
+
+    <!-- Second Modal -->
+    <div id="secondModal" class="modal">
+        <!-- Modal content -->
+        <div id="second-modal-content" class="modal-content">
+            <div class="new-post"><strong>Create new post</strong></div>
+            <div id="write-new-post">
+                <div id="write-img"></div>
+                <form class="write-caption">
+                    <div class="write-profile">
+                        <img class="write-profile-pic" alt="profile pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png"/>
+                        <span><strong>sehyun.kelly</strong></span>
+                    </div>
+                    <textarea id="write-content" placeholder="Write a caption..." name="write-content" maxlength="2200"></textarea>
+                    <span class="write-words"><span id="wordCount">0</span>/2,200</span>
+                    <div style="border-top: 1px solid gainsboro">
+
+                    </div>
+                </form>
+            </div>
+            <span id="back">←</span>
+            <span id="modal-share" class="modal-button">Share</span>
+        </div>
+
+
+        <span id="modal-close-2" class="close">&times;</span>
+    </div>
+
 </section>
+
+<!-- javascript -->
+<script src="{% static 'javascript/instagram-main.js' %}"></script>
+
 </body>
 </html>

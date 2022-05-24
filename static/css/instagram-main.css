@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap');
 
-*{
-    font-family: 'Roboto', sans-serif;
+* {
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: -apple-system, BlinkMacSystemFont;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: 14px;
 }
 
-body{
+body {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -15,7 +17,20 @@ body{
     justify-items: center;
 }
 
-.main{
+button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.main {
     grid-column: 2 / span 1;
     width: 100%;
     height: 100%;
@@ -23,23 +38,28 @@ body{
     flex-direction: column;
 }
 
-.navbar{
+.navbar {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
-    width: 975px;
+    padding-left: calc((100% - 975px) / 2);
+    padding-right: calc((100% - 975px) / 2);
+    width: 100%;
     height: 60px;
     display: grid;
     grid-template-columns: 20% 50% 30%;
     align-items: center;
-    background-color: darkgoldenrod;
+    background-color: white;
+    border-bottom: 1px solid gainsboro;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
 
-.search{
+.search {
     justify-self: center;
     width: 268px;
     height: 36px;
@@ -47,59 +67,60 @@ a{
     border: none;
     border-radius: 5px;
     background-color: #efefef;
-
+    padding-left: 10px;
 }
 
-.upper-icons > a{
+.search::placeholder{
+    font-size: 17px;
+}
+
+.upper-icons > a {
     padding-left: 20px;
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    font-variation-settings: 'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
 .material-symbols-outlined:active {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    font-variation-settings: 'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
-.profile{
-    display:inline-block;
+.profile {
+    display: inline-block;
     width: 22px;
     height: 22px;
     border: 1px solid red;
     border-radius: 50%;
 }
 
-.feed{
+.feed {
     margin-top: 60px;
     display: flex;
     width: 975px;
     height: 100%;
 }
 
-.left{
+.left {
     width: 630px;
-    background-color: aquamarine;
 }
 
 .stories {
     width: 100%;
     height: 120px;
     margin: 24px 0;
-    background-color: crimson;
     display: flex;
     flex-direction: row;
+    border: 1px solid gainsboro;
 }
 
-.each-story{
+.each-story {
     width: 80px;
     height: 110px;
     margin: 3px 3px;
@@ -110,43 +131,252 @@ a{
     width: 100%;
 }
 
-.each-post{
+.each-post {
     width: 100%;
-    height: 1028px;
+    height: 900px;
     margin-bottom: 25px;
-    background-color: darkolivegreen;
+    border: 1px solid gainsboro;
 }
 
-.post-profile, .post-picture, .post-reaction, .post-comment{
+.post-profile, .post-picture, .post-reaction, .post-comment {
     width: 100%;
     border-bottom: 1px solid gainsboro;
 }
 
-.post-profile{
-    height: 70px;
+.post-profile {
+    height: 60px;
+    padding-left: 16px;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    align-items: center;
 }
 
-.post-picture{
-    height: 765px;
+.post-profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    justify-self: center;
+}
+
+.post-picture {
+    width: 630px;
+    height: 600px;
+}
+
+.post-picture-img {
+    width: 630px;
+    height: 600px;
+    object-fit: cover;
 }
 
 .post-reaction {
-    height: 138px;
+    height: 180px;
+    padding: 0 16px 16px 16px;
+    display: grid;
+    grid-template-rows: 30% 16% 44% 10%;
 }
 
-.post-comment{
-    height: 55px;
+.post-reaction-icons {
+    display: grid;
+    grid-template-columns: 7% 7% 7% 79%;
+    align-items: center;
 }
-.right{
+
+.favorite{
+    width: 24px;
+    height: 24px;
+    justify-self: end;
+}
+
+.timestamp {
+    color: gray;
+    font-size: 11px;
+}
+
+.post-comment {
+    height: 60px;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    align-items: center;
+}
+
+.smile{
+    padding-left: 16px;
+}
+.comment{
+    border: none;
+    outline: none;
+}
+
+.comment-submit{
+    color: #BFE0FD;
+}
+
+.right {
     position: fixed;
     top: 60px;
-    right: calc((100% - 975px)/2);
+    right: calc((100% - 975px) / 2);
     width: 345px;
     background-color: coral;
 }
 
-.personalized{
+
+#firstModal{
+  display: none; /* Hidden by default */
+}
+
+#secondModal{
+    display: none; /* Hidden by default */
+}
+
+
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+width: 100%;
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 6% auto;
+  border: 1px solid #888;
+    max-width: min(calc(100vw - 32px), 1195px);
+    min-width: 688px;
+    max-height: min(calc(100vw - 372px), 855px);
+    min-height: 348px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.new-post{
+    width: 100%;
+    padding: 14px;
+    height: 45px;
+    border-bottom: 1px solid gainsboro;
+    text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+    margin-right: 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#back{
+    font-size: 20px;
+  font-weight: bold;
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    cursor: pointer;
+}
+
+.upload{
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+}
+
+.drop-image{
+    width: 400px;
+    align-self: end;
+}
+
+.select-image{
+    background-color: #0095F6;
+    color: white;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 5px;
+    align-self: start;
+}
+
+#modal-next{
+    display: none;
+}
+
+.modal-button{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-weight: bold;
+    color: #0095F6;
+    cursor: pointer;
+}
+
+.personalized {
     margin-top: 24px;
     height: 100%;
     background-color: darkseagreen;
+}
+
+#write-new-post{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+#write-img{
+    height: 100%;
+    width: 855px;
+}
+
+.write-caption{
+    min-width: 338px;
+    display: grid;
+    grid-template-rows: 5% 35% 5% 55%;
+}
+
+.write-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.write-profile-pic{
+        width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 12px;
+}
+
+#write-content {
+    padding: 12px;
+}
+
+.write-words{
+    font-size: 11px;
+    color: #aaaaaa;
+    text-align: right;
+    margin: 5px 12px;
+}
+
+#wordCount{
+        font-size: 11px;
+    color: #aaaaaa;
 }
