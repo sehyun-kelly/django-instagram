@@ -6,7 +6,7 @@ let transferFile;
 let fileURL;
 
 //open modal for upload
-document.getElementById("nav-add").onclick = function (e) {
+document.getElementById("nav-add").onclick = function () {
     if (transferFile) {
         console.log('transferFile exists');
         console.log('fileURL: ' + fileURL);
@@ -44,13 +44,13 @@ document.getElementById("modal-close-2").onclick = function (e) {
 }
 
 window.onclick = function (e) {
-    if (e.target == firstModal) {
+    if (e.target === firstModal) {
         e.target.files = null;
         firstModal.style.display = "none";
         main.style.overflow = "scroll";
     }
 
-    if (e.target == secondModal) {
+    if (e.target === secondModal) {
         console.log('second modal window clicked');
         e.target.files = null;
         secondModal.style.display = "none";
@@ -116,3 +116,38 @@ document.getElementById("back").onclick = function(){
         firstModal.style.display = "flex";
     secondModal.style.display = "none";
 }
+
+
+$('#modal-share').click(function() {
+    let file = transferFile;
+    let image = transferFile.name;
+    let content = document.getElementById("write-content").value;
+    let user_id = 'sehyun.kelly';
+    let profile_img = 'https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png';
+
+    let fd = new FormData();
+
+    fd.append('file', file);
+    fd.append('image', image);
+    fd.append('content', content);
+    fd.append('user_id', user_id);
+    fd.append('profile_img', profile_img);
+
+    $.ajax({
+        url: "/content/upload",
+        data: fd,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log('success');
+        },
+        error: function(request, status, error){
+            console.log('error');
+        },
+        complete: function(){
+            console.log('complete');
+            location.replace("/main");
+        }
+    });
+});

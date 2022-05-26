@@ -1,4 +1,5 @@
 {% load static %}
+{% load content_tags %}
 
 <!doctype html>
 <html lang="en">
@@ -22,7 +23,7 @@
 <section class="main">
     <nav class="navbar">
         <a class="navbar-brand">
-            <img style="width: 100px"
+            <img style="width: 100px; margin-left: 10px"
                  src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
                  alt="logo"/>
         </a>
@@ -50,12 +51,12 @@
                 {% for feed in feeds %}
                     <div class="each-post">
                         <div class="post-profile">
-                            <img class="post-profile-pic" alt="profile pic" src={{ feed.profile_image }}/>
+                            <img class="post-profile-pic" alt="profile pic" src={{feed.profile_image}}>
                             <span><strong>{{ feed.user_id }}</strong></span>
                             <span class="material-symbols-outlined">more_horiz</span>
                         </div>
                         <div class="post-picture">
-                            <img class="post-picture-img" alt="post pic" src={{ feed.image }}/>
+                            <img class="post-picture-img" alt="post pic" src={% get_media_prefix %}{{ feed.image }}/>
                         </div>
                         <div class="post-reaction">
                             <form class="post-reaction-icons">
@@ -67,14 +68,14 @@
                                 </button>
                             </form>
                             <div>
-                                <span>Liked by <strong>others</strong></span>
+                                <span><strong>{{ feed.like_count }}</strong> Likes</span>
                             </div>
                             <div>
                                 <span><strong>{{ feed.user_id }}</strong></span>
                                 <span>{{ feed.content }}</span>
                             </div>
                             <div>
-                                <span class="timestamp">10 HOURS AGO</span>
+                                <span class="timestamp">{{ feed.created|timesince|upto:'h'}}HOURS AGO</span>
                             </div>
                         </div>
                         <form class="post-comment">
@@ -89,7 +90,14 @@
         </div>
         <nav class="right">
             <div class="personalized">
-                profile
+                <div class="personalized-profile">
+                    <img class="personalized-pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png"/>
+                    <div class="personalized-uid">
+                        <span>sehyun.kelly</span>
+                        <span>Sehyun Kelly Park</span>
+                    </div>
+                    <div class="switch">Switch</div>
+                </div>
             </div>
         </nav>
     </section>

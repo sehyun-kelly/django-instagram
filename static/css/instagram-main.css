@@ -328,11 +328,6 @@ width: 100%;
     cursor: pointer;
 }
 
-.personalized {
-    margin-top: 24px;
-    height: 100%;
-    background-color: darkseagreen;
-}
 
 #write-new-post{
     display: flex;
@@ -379,4 +374,44 @@ width: 100%;
 #wordCount{
         font-size: 11px;
     color: #aaaaaa;
+}
+
+.personalized {
+    margin-top: 24px;
+    height: 100%;
+    background-color: darkseagreen;
+}
+
+.personalized-profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.personalized-pic{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 12px;
+}
+
+.personalized-uid{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+@media screen and (max-width: 975px) {
+    .right{
+        display: none;
+    }
+
+    .left{
+        margin-left: calc((100vw - 630px) / 2);
+    }
+
+    .navbar{
+    grid-template-columns: 20% 45% 35%;
+    }
 }
