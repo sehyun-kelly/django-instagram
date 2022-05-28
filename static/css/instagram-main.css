@@ -121,11 +121,31 @@ a {
 }
 
 .each-story {
-    width: 80px;
+    width: 85px;
     height: 110px;
-    margin: 3px 3px;
-    background-color: darkolivegreen;
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
 }
+
+.story-border {
+    width: 79px;
+    height: 79px;
+    margin: 5px 0;
+    border-radius: 50%;
+    background: linear-gradient(to right, #FFC801, #DC01B1);
+}
+
+.story-pic{
+    width: 75px;
+    height: 75px;
+    margin: 2px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
 
 .posts {
     width: 100%;
@@ -137,6 +157,7 @@ a {
     margin-bottom: 25px;
     border: 1px solid gainsboro;
 }
+
 
 .post-profile, .post-picture, .post-reaction, .post-comment {
     width: 100%;
@@ -215,9 +236,8 @@ a {
 .right {
     position: fixed;
     top: 60px;
-    right: calc((100% - 975px) / 2);
+    right: calc(((100% - 975px) / 2) - 10px);
     width: 345px;
-    background-color: coral;
 }
 
 
@@ -379,7 +399,6 @@ width: 100%;
 .personalized {
     margin-top: 24px;
     height: 100%;
-    background-color: darkseagreen;
 }
 
 .personalized-profile{
@@ -389,9 +408,9 @@ width: 100%;
 
 }
 
-.personalized-pic{
-    width: 32px;
-    height: 32px;
+.personalized-pic {
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     margin: 0 12px;
 }
@@ -400,6 +419,17 @@ width: 100%;
     display: flex;
     flex-direction: column;
     width: 65%;
+}
+
+.personalized-name {
+    color: #8E8E8E;
+    font-size: 13px;
+}
+
+#switch {
+    color: #0095F6;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 975px) {

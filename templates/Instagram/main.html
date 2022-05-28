@@ -40,12 +40,14 @@
     <section class="feed">
         <div class="left">
             <div class="stories">
-                <div class="each-story">story</div>
-                <div class="each-story">story</div>
-                <div class="each-story">story</div>
-                <div class="each-story">story</div>
-                <div class="each-story">story</div>
-                <div class="each-story">story</div>
+                {% for feed in feeds %}
+                <div class="each-story">
+                    <div class="story-border">
+                        <img class="story-pic" src={{feed.profile_image}}>
+                    </div>
+                    <span style="font-size: 12px">{{ feed.user_id }}</span>
+                </div>
+                {% endfor %}
             </div>
             <div class="posts">
                 {% for feed in feeds %}
@@ -75,7 +77,7 @@
                                 <span>{{ feed.content }}</span>
                             </div>
                             <div>
-                                <span class="timestamp">{{ feed.created|timesince|upto:'h'}}HOURS AGO</span>
+                                <span class="timestamp">{{ feed.created|timesince|upto}} AGO</span>
                             </div>
                         </div>
                         <form class="post-comment">
@@ -91,12 +93,12 @@
         <nav class="right">
             <div class="personalized">
                 <div class="personalized-profile">
-                    <img class="personalized-pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png"/>
+                    <img class="personalized-pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png">
                     <div class="personalized-uid">
-                        <span>sehyun.kelly</span>
-                        <span>Sehyun Kelly Park</span>
+                        <span class="personalized-userid">sehyun.kelly</span>
+                        <span class="personalized-name">Sehyun Kelly Park</span>
                     </div>
-                    <div class="switch">Switch</div>
+                    <div id="switch">Switch</div>
                 </div>
             </div>
         </nav>
