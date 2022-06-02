@@ -30,6 +30,13 @@ def upto(value):
         else:
             return result + 'MINUTES'
 
+    if 'week' in value:
+        result = value.split('week')[0]
+        if '1' in result and len(result) == 2:
+            return result + 'WEEK'
+        else:
+            return result + 'WEEKS'
+
     result = value.split('hour')[0]
     if '1' in result and len(result) == 2:
         return result + 'HOUR'

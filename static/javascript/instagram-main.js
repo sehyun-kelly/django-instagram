@@ -151,3 +151,51 @@ $('#modal-share').click(function() {
         }
     });
 });
+
+let comment = document.querySelectorAll('.comment');
+let commentSubmit = document.querySelectorAll('.comment-submit');
+
+for(let i = 0; i < comment.length; i++){
+    comment[i].onkeydown = function(){
+        commentSubmit[i].style.color = '#0095F7';
+    }
+}
+
+for(let i = 0; i < commentSubmit.length; i++){
+    commentSubmit[i].onclick = function(e){
+    let feed_id = e.target.getAttribute('feed_id');
+    let reply_id = 'reply_' + feed_id;
+    let user_id = 'sehyun_kelly';
+    console.log(reply_id);
+    let reply_content = document.getElementById(reply_id).value;
+    console.log(reply_content);
+
+    if(reply_content.length <= 0){
+        alert('No comment entered');
+        return 0;
+    }
+
+    $.ajax({
+            url: "/content/reply",
+            data: {
+                feed_id: feed_id,
+                user_id: user_id,
+                reply_content: reply_content
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("success");
+                location.replace("/main");
+            },
+            error: function (request, status, error) {
+                console.log("error");
+            },
+            complete: function () {
+                console.log("complete");
+                $('#' + reply_id).val('');
+            }
+        });
+
+
+}
+}

@@ -41,19 +41,19 @@
         <div class="left">
             <div class="stories">
                 {% for feed in feeds %}
-                <div class="each-story">
-                    <div class="story-border">
-                        <img class="story-pic" src={{feed.profile_image}}>
+                    <div class="each-story">
+                        <div class="story-border">
+                            <img class="story-pic" src={% get_media_prefix %}{{ feed.image }}>
+                        </div>
+                        <span style="font-size: 12px">{{ feed.user_id }}</span>
                     </div>
-                    <span style="font-size: 12px">{{ feed.user_id }}</span>
-                </div>
                 {% endfor %}
             </div>
             <div class="posts">
                 {% for feed in feeds %}
                     <div class="each-post">
                         <div class="post-profile">
-                            <img class="post-profile-pic" alt="profile pic" src={{feed.profile_image}}>
+                            <img class="post-profile-pic" alt="profile pic" src={{ feed.profile_image }}>
                             <span><strong>{{ feed.user_id }}</strong></span>
                             <span class="material-symbols-outlined">more_horiz</span>
                         </div>
@@ -72,18 +72,29 @@
                             <div>
                                 <span><strong>{{ feed.like_count }}</strong> Likes</span>
                             </div>
-                            <div>
-                                <span><strong>{{ feed.user_id }}</strong></span>
-                                <span>{{ feed.content }}</span>
+                            <div id="comment-section">
+                                <div class="post-content-box">
+                                    <span><strong>{{ feed.user_id }}</strong></span>
+                                    <span>{{ feed.content }}</span>
+                                </div>
+                                <!-- reply -->
+                                {% for reply in feed.reply_list %}
+                                <div class="post-content-box">
+                                    <span><strong>{{ reply.user_id }}</strong></span>
+                                    <span>{{ reply.reply_content }}</span>
+                                </div>
+                                {% endfor %}
+                                <!-- reply -->
                             </div>
+
                             <div>
-                                <span class="timestamp">{{ feed.created|timesince|upto}} AGO</span>
+                                <span class="timestamp">{{ feed.created|timesince|upto }} AGO</span>
                             </div>
                         </div>
                         <form class="post-comment">
                             <span class="material-symbols-outlined smile">sentiment_satisfied</span>
-                            <input class="comment" type="text" placeholder="Add a comment..." aria-label="comment"/>
-                            <button class="comment-submit" type="submit">Post</button>
+                            <input id="reply_{{ feed.id }}" class="comment" type="text" placeholder="Add a comment..." aria-label="comment"/>
+                            <div feed_id = {{ feed.id }} class="comment-submit">Post</div>
                         </form>
                     </div>
                 {% endfor %}
@@ -93,7 +104,8 @@
         <nav class="right">
             <div class="personalized">
                 <div class="personalized-profile">
-                    <img class="personalized-pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png">
+                    <img class="personalized-pic"
+                         src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png">
                     <div class="personalized-uid">
                         <span class="personalized-userid">sehyun.kelly</span>
                         <span class="personalized-name">Sehyun Kelly Park</span>
@@ -129,10 +141,12 @@
                 <div id="write-img"></div>
                 <form class="write-caption">
                     <div class="write-profile">
-                        <img class="write-profile-pic" alt="profile pic" src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png"/>
+                        <img class="write-profile-pic" alt="profile pic"
+                             src="https://www.skillshare.com/blog/wp-content/uploads/2020/11/BANNER_228129.png"/>
                         <span><strong>sehyun.kelly</strong></span>
                     </div>
-                    <textarea id="write-content" placeholder="Write a caption..." name="write-content" maxlength="2200"></textarea>
+                    <textarea id="write-content" placeholder="Write a caption..." name="write-content"
+                              maxlength="2200"></textarea>
                     <span class="write-words"><span id="wordCount">0</span>/2,200</span>
                     <div style="border-top: 1px solid gainsboro">
 

@@ -221,9 +221,14 @@ a {
     align-items: center;
 }
 
+.post-content-box{
+    margin-bottom: 5px;
+}
+
 .smile{
     padding-left: 16px;
 }
+
 .comment{
     border: none;
     outline: none;
