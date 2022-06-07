@@ -185,7 +185,8 @@ for(let i = 0; i < commentSubmit.length; i++){
             method: "POST",
             success: function (data) {
                 console.log("success");
-                location.replace("/main");
+                $('#comment-section-' + feed_id).append('<div class="post-content-box">' + '<span><strong>' + user_id + ' </strong></span>' +
+                    '<span>' + reply_content + '</span></div>')
             },
             error: function (request, status, error) {
                 console.log("error");

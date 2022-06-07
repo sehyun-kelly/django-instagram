@@ -235,6 +235,7 @@ a {
 }
 
 .comment-submit{
+    cursor: pointer;
     color: #BFE0FD;
 }
 

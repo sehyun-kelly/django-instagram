@@ -62,17 +62,16 @@
                         </div>
                         <div class="post-reaction">
                             <form class="post-reaction-icons">
-                                <button type="submit"><span class="material-symbols-outlined">favorite</span></button>
-                                <button type="submit"><span class="material-symbols-outlined">chat_bubble</span>
-                                </button>
-                                <button type="submit"><span class="material-symbols-outlined">send</span></button>
+                                <span id="like_{{ feed.id }}" feed_id="{{ feed.id }}" class="material-symbols-outlined">favorite</span>
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                                <span class="material-symbols-outlined">send</span>
                                 <button type="submit" class="favorite"><span class="material-symbols-outlined bookmark">bookmark</span>
                                 </button>
                             </form>
                             <div>
                                 <span><strong>{{ feed.like_count }}</strong> Likes</span>
                             </div>
-                            <div id="comment-section">
+                            <div id="comment-section-{{ feed.id }}">
                                 <div class="post-content-box">
                                     <span><strong>{{ feed.user_id }}</strong></span>
                                     <span>{{ feed.content }}</span>
